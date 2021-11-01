@@ -1,39 +1,16 @@
 import { React, useState } from 'react'
 import { DataContext } from '../Contexts/DataContext';
-import SourceController from '../Controllers/SourceController';
+import { configureStore, combineReducers } from '@reduxjs/toolkit';
+import PageSlice from '../Store/Slices/Browser';
 
 export default function PageBrowser({ loadResult, children }) {
-    const sourceController = new SourceController(loadResult);
-    const reload = () => {
-        sourceController.load().then((items) => {
-            setContext({
-                ...context,
-                items
-            })
-        });
-    };
-
-    const setFilter = (filter) => {
-        sourceController.setFilter(filter);
-        setContext({
-            ...context,
-            loading: true
-        })
-        sourceController.load().then((items) => {
-            setContext({
-                ...context,
-                items,
-                loading: false
-            });
-        });
-    };
-    const [context, setContext] = useState({
-        reload,
-        setFilter,
-        ...loadResult
+    const store = configureStore({
+        preloadedState: {},
+        reducer: combineReducers({page: PageSlice.reducer})
     });
+ 
     return (
-        <DataContext.Provider value={context}>
+        <DataContext.Provider value={store}>
             {children}
         </DataContext.Provider>
     )
