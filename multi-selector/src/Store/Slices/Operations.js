@@ -11,21 +11,24 @@ const slice = createSlice({
         setSelection(state, value) {
             const listId = value.payload.id;
             state[listId].selectedKeys = value.payload.marked;
-            state.excludedKeys = value.payload.excluded;
+            state[listId].excludedKeys = value.payload.excluded;
         },
         setListMarkedKey(state, value) {
-            if (state.selectedKeys.length === 0) {
-                state.selectedKeys.push(value.payload);
+            const listId = value.payload.id;
+            if (state[listId].selectedKeys.length === 0) {
+                state[listId].selectedKeys.push(value.payload);
             }
         },
-        unselectAll(state) {
-            state.selectedKeys = [];
-            state.excludedKeys = [];
+        unselectAll(state, value) {
+            const listId = value.payload.id;
+            state[listId].selectedKeys = [];
+            state[listId].excludedKeys = [];
         },
 
-        selectAll(state) {
-            state.selectedKeys = [null];
-            state.excludedKeys = [null];
+        selectAll(state, value) {
+            const listId = value.payload.id;
+            state[listId].selectedKeys = [null];
+            state[listId].excludedKeys = [null];
         }
     }
 });

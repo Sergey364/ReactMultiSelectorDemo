@@ -1,13 +1,16 @@
 import { React, useContext } from 'react';
-import { DataContext } from '../Contexts/DataContext';
 import { Filter } from './Filter';
+import {
+    useContextProviderDispatch,
+    useContextProviderSelector
+} from "../Contexts/DataContext";
 
 export function FilterWidget() {
-    const { setFilter } = useContext(DataContext);
+    const dispatch = useContextProviderDispatch();
+    const selection = useContextProviderSelector((state) => {
+        const kek = 0;
+    });
     const onFilterChanged = (type) => {
-        setFilter({
-            type
-        });
     }
     return (
         <Filter onChange={onFilterChanged} />

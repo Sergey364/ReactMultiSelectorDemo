@@ -1,7 +1,6 @@
-import { React, useState } from 'react'
-import { DataContext } from '../Contexts/DataContext';
-import { configureStore, combineReducers } from '@reduxjs/toolkit';
-import PageSlice from '../Store/Slices/Browser';
+import { React } from 'react'
+import { ContextProvider } from '../Contexts/DataContext';
+import { configureStore } from '@reduxjs/toolkit';
 import OperationSlice from '../Store/Slices/Operations';
 
 export default function PageBrowser({ loadResult, children }) {
@@ -9,13 +8,12 @@ export default function PageBrowser({ loadResult, children }) {
         preloadedState: {},
         reducer: {
             operation: OperationSlice.reducer
-            filter: 
         }
     });
  
     return (
-        <DataContext.Provider value={store}>
+        <ContextProvider store={store}>
             {children}
-        </DataContext.Provider>
+        </ContextProvider>
     )
 }
