@@ -4,7 +4,9 @@ import operationsSlice from './Operations';
 const slice = createSlice({
     name: 'browser',
     initialState: {},
-    reducers: combineReducers({ operation: operationsSlice.reducer })()
+    reducers: {
+        operation: operationsSlice.reducer
+    }
 });
 
 export default slice;

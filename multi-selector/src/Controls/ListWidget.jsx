@@ -4,6 +4,7 @@ import { List } from './List';
 
 export function ListWidget() {
     const value = useContext(DataContext);
+    
     return (
         <List items={[]} loading={false}/>
     )

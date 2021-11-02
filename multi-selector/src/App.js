@@ -22,7 +22,7 @@ function App({ pageConfig }) {
     <div>
       {loading ? <h1>Идет загрузка...</h1> :
         <PageBrowser loadResult={data}>
-          <ListWidget />
+          <ListWidget name="list1" />
           <FilterWidget/>
         </PageBrowser>
       }

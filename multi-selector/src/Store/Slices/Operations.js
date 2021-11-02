@@ -9,7 +9,8 @@ const slice = createSlice({
     },
     reducers: {
         setSelection(state, value) {
-            state.selectedKeys = value.payload.marked;
+            const listId = value.payload.id;
+            state[listId].selectedKeys = value.payload.marked;
             state.excludedKeys = value.payload.excluded;
         },
         setListMarkedKey(state, value) {
